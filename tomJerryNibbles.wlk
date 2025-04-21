@@ -8,11 +8,11 @@ object tom {
         energiaActual = energiaActual + cantidad
     }
     method correr(metros) {
-		energiaActual = 0.max(energiaActual - metros / 2)
+		energiaActual = energiaActual - (metros / 2)
 
     }
     method velocidadMaxima() {
-        return 5 + energiaActual / 10
+        return 5 + (energiaActual / 10)
     }
 }
 

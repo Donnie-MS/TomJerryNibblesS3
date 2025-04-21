@@ -2,6 +2,56 @@ import tomJerryNibbles.*
 
 describe "Comportamiento de tom" {
   test "Al inicio, la velocidad maxima de Tom es 10 (50 de energia)" {
-    assert.equals(tom.energia(), 50)
+    assert.equals(tom.velocidadMaxima(), 10)
+  }
+  test "Si come a jerry, la velocidad maxima pasa a ser 15.2(su energia es 102)" {
+    //act
+    tom.comer(jerry)
+    assert.equals(tom.velocidadMaxima(), 15.2)
+    assert.equals(102, tom.energia())
+  }
+  test "Si corre 24 metros, entonces su velocidad maxima pasa a ser 14 (su energia es 90)" {
+    //arrange
+    tom.comer(jerry)
+    //act
+    tom.correr(24)
+    //asserts
+    assert.equals(tom.velocidadMaxima(), 14)
+    assert.equals(tom.energia(), 90)
+  }
+  test "Si come a Nibbles, pasa a tener velocidad maxima de 18.7 (su energia  es 137)" {
+    // arrange
+    tom.comer(jerry)
+    tom.correr(24)
+    //act
+    tom.comer(nibbles)
+    //assert
+    assert.equals(tom.velocidadMaxima(), 18.7)
+    assert.equals(tom.energia(), 137)
+  }
+  test "Si Jerry cumple años(3 años de edad), y luego Tom lo vuelve a comer, pasaria a tener 25.9 (su energia es 209)" {
+    // arrange
+    tom.comer(jerry)
+    tom.correr(24)
+    tom.comer(nibbles)
+    jerry.cumplirAnios()
+    //act
+    tom.comer(jerry)
+    
+    assert.equals(tom.velocidadMaxima(), 25.9)
+    assert.equals(tom.energia(), 209)
+  }
+  test "si corre 38 metros, su velocidad pasa a ser 24 (su energia es 190)" {
+    //arrange
+    tom.comer(jerry)
+    tom.correr(24)
+    tom.comer(nibbles)
+    jerry.cumplirAnios()
+    tom.comer(jerry)
+    //Act
+    tom.correr(38)
+    
+    assert.equals(tom.velocidadMaxima(), 24)
+    assert.equals(tom.energia(), 190)
   }
 }
