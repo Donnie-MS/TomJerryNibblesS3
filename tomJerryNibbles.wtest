@@ -54,4 +54,17 @@ describe "Comportamiento de tom" {
     assert.equals(tom.velocidadMaxima(), 24)
     assert.equals(tom.energia(), 190)
   }
+  test "Tom puede cazar a 100 metros, teniendo 50 de energia" {
+    
+    assert.that(tom.puedeCazar(100))
+    assert.equals(tom.energia(), 50)
+  }
+  test "Tom no puede cazar a 101 metros, teniendo 50 denergia" {
+    assert.notThat(tom.puedeCazar(101))
+    assert.equals(tom.energia(), 50)
+  }
+  test "Tom caza exitosamente a jerry que esta a menos de 100 metros" {
+    tom.cazar(jerry, 100)
+    assert.equals(tom.energia(), 52)
+  }
 }

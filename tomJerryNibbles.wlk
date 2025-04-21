@@ -7,12 +7,23 @@ object tom {
     method cambiarEnergia(cantidad) {
         energiaActual = energiaActual + cantidad
     }
-    method correr(metros) {
-		energiaActual = energiaActual - (metros / 2)
-
+    method correr(distancia) {
+		energiaActual = 0.max(energiaActual - distancia / 2)
+    }
+    method puedeCorrer(distancia) {
+        return energiaActual >= (distancia / 2)
     }
     method velocidadMaxima() {
         return 5 + (energiaActual / 10)
+    }
+    method puedeCazar(distancia) {
+        return self.puedeCorrer(distancia)
+    }
+    method cazar(unRaton, distancia) {
+        if (self.puedeCazar(distancia)) {
+            self.correr(distancia)
+            self.comer(unRaton)
+        }
     }
 }
 
@@ -30,25 +41,3 @@ object nibbles {
         return 35
     }
 }
-/*
-object tom {
-	
-
-	method puedeCorrer(distancia) {
-		return energia >= distancia / 2
-	}
-
-	method puedeCazar(distancia){
-		return self.puedeCorrer(distancia)
-	}
-
-	method puedeCazar(distancia, raton) {
-		if (self.puedeCazar(distancia)) {
-			self.correr(distancia)
-			self.comer(raton)
-		}
-	}
-
-	
-}
-*/
